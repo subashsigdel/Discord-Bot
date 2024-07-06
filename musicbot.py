@@ -16,10 +16,10 @@ class MusicBot(commands.Cog):
         self.queue = []
 
     @commands.command()
-    async def play(self, ctx, *, search):
+    async def bajau(self, ctx, *, search):
         voice_channel = ctx.author.voice.channel if ctx.author.voice else None
         if not voice_channel:
-            return await ctx.send("You are not in a voice channel")
+            return await ctx.send("voice channel ma ja paila ")
         
         if not ctx.voice_client:
             await voice_channel.connect()
@@ -32,7 +32,7 @@ class MusicBot(commands.Cog):
                 url = info['url']
                 title = info['title']
                 self.queue.append((url, title))
-                await ctx.send(f'Added to queue: **{title}**')
+                await ctx.send(f'ok sir: **{title}**')
         if not ctx.voice_client.is_playing():
             await self.play_next(ctx)
 
@@ -41,17 +41,17 @@ class MusicBot(commands.Cog):
             url, title = self.queue.pop(0)
             source = await discord.FFmpegOpusAudio.from_probe(url, **FFMPEG_OPTIONS)
             ctx.voice_client.play(source, after=lambda _: self.client.loop.create_task(self.play_next(ctx)))
-            await ctx.send(f'Now playing **{title}**')
+            await ctx.send(f'la suna **{title}**')
         elif not ctx.voice_client.is_playing():
-            await ctx.send('Queue is empty')
+            await ctx.send('geet xaina !!!')
 
     @commands.command()
-    async def skip(self, ctx):
+    async def arko(self, ctx):
         if ctx.voice_client and ctx.voice_client.is_playing():
             ctx.voice_client.stop()
             await ctx.send("Skipped")
 
-client = commands.Bot(command_prefix="!", intents=intents)
+client = commands.Bot(command_prefix="geet ", intents=intents)
 
 async def main():
     await client.add_cog(MusicBot(client))
