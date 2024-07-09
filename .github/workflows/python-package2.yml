@@ -25,6 +25,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install discord.py
           pip install yt-dlp
+          pip install pynacl
 
       - name: Run a Python script
         env:
