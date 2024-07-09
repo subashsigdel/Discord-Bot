@@ -31,3 +31,4 @@ jobs:
         env:
           DISCORD_SECRET_TOKEN: ${{ secrets.DISCORD_SECRET_TOKEN2 }}
         run: python .github/workflows/musicbot.py
+        
