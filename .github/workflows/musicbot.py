@@ -55,10 +55,10 @@ class MusicBot(commands.Cog):
 client = commands.Bot(command_prefix="geet ", intents=intents)
 
 async def main():
-    token = os.getenv('DISCORD_SECRET_TOKE')
+    token = os.getenv('DISCORD_SECRET_TOKEN2')
     print(f'Token: {token}')  # Add this line for debugging
     if token is None:
-        raise ValueError("DISCORD_SECRET_TOKE environment variable is not set")
+        raise ValueError("DISCORD_SECRET_TOKEN2 environment variable is not set")
     await client.add_cog(MusicBot(client))
     await client.start(token)
 
