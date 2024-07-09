@@ -1,5 +1,9 @@
+import os
 import discord
 from discord.ext import commands
+
+# Read the secret token from the environment variable
+DISCORD_SECRET_TOKEN = os.getenv('DISCORD_SECRET_TOKEN')
 
 intents = discord.Intents.default()
 intents.messages = True
@@ -22,6 +26,7 @@ async def gali0(ctx, member: discord.Member):
             await ctx.send(f'{member.mention},Lord rasenga is our Master you idiot. we cant do it')
         else:
             await ctx.send(f'{member.mention}, You Blithering Idiot')
+
 # Command: mention
 @bot.command()
 async def gali1(ctx, member: discord.Member):
@@ -31,6 +36,7 @@ async def gali1(ctx, member: discord.Member):
 @bot.command()
 async def gali2(ctx, member: discord.Member):
         await ctx.send(f'{member.mention}, you fucking pain in the ass')
+
 # Command: mention
 @bot.command()
 async def gali3(ctx, member: discord.Member):
@@ -40,8 +46,6 @@ async def gali3(ctx, member: discord.Member):
 @bot.command()
 async def gali4(ctx, member: discord.Member):
         await ctx.send(f'{member.mention}, Holy Mary Mother of Jesus what is that')
-
-
 
 # Run the bot with your token
 bot.run(DISCORD_SECRET_TOKEN)
