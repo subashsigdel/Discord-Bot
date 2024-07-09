@@ -2,11 +2,7 @@ import discord
 from discord.ext import commands
 import yt_dlp
 import asyncio
-import os 
-
-# Read the secret token from the environment variable
-DISCORD_SECRET_TOKEN = os.getenv('DISCORD_SECRET_TOKE')
-
+import os
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -25,7 +21,7 @@ class MusicBot(commands.Cog):
         voice_channel = ctx.author.voice.channel if ctx.author.voice else None
         if not voice_channel:
             return await ctx.send("voice channel ma ja paila ")
-        
+
         if not ctx.voice_client:
             await voice_channel.connect()
 
@@ -59,7 +55,11 @@ class MusicBot(commands.Cog):
 client = commands.Bot(command_prefix="geet ", intents=intents)
 
 async def main():
+    token = os.getenv('DISCORD_SECRET_TOKE')
+    print(f'Token: {token}')  # Add this line for debugging
+    if token is None:
+        raise ValueError("DISCORD_SECRET_TOKE environment variable is not set")
     await client.add_cog(MusicBot(client))
-    await client.start(DISCORD_SECRET_TOKEN)
+    await client.start(token)
 
 asyncio.run(main())
