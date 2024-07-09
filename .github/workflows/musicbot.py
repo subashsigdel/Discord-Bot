@@ -8,7 +8,6 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.voice_states = True
 
-DISCORD_SECRET_TOKEN2 = os.getenv('DISCORD_SECRET_TOKEN2')
 FFMPEG_OPTIONS = {'options': '-vn'}
 YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': True}
 
@@ -22,7 +21,7 @@ class MusicBot(commands.Cog):
         voice_channel = ctx.author.voice.channel if ctx.author.voice else None
         if not voice_channel:
             return await ctx.send("voice channel ma ja paila ")
-        
+
         if not ctx.voice_client:
             await voice_channel.connect()
 
@@ -57,6 +56,6 @@ client = commands.Bot(command_prefix="geet ", intents=intents)
 
 async def main():
     await client.add_cog(MusicBot(client))
-    await client.start('DISCORD_SECRET_TOKEN2')
+    await client.start(os.getenv('DISCORD_SECRET_TOKEN2'))
 
 asyncio.run(main())
