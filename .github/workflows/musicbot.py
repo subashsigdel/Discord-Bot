@@ -55,7 +55,9 @@ class MusicBot(commands.Cog):
 client = commands.Bot(command_prefix="geet ", intents=intents)
 
 async def main():
+    token = os.getenv('DISCORD_SECRET_TOKEN2')
+    print(f'Token: {token}')  # Add this line for debugging
     await client.add_cog(MusicBot(client))
-    await client.start(os.getenv('DISCORD_SECRET_TOKEN2'))
+    await client.start(token)
 
 asyncio.run(main())
